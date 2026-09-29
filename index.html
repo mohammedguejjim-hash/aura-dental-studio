@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Dental Studio — Premium Esthetic Dentistry</title>
+<meta name="description" content="Aura Dental Studio — we combine advanced science with an artist's touch. Your smile, effortlessly enhanced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#EAE6DE;
+  --cream-2:#F4F1EA;
+  --ink:#14151D;
+  --ink-2:#1E2029;
+  --gold:#B99B5F;
+  --serif:'Fraunces',serif;
+  --sans:'Archivo',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+::selection{background:var(--ink);color:var(--cream)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3rem)}
+
+/* ---------- preloader ---------- */
+#preloader{position:fixed;inset:0;z-index:2000;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem}
+#preloader .pl-logo{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4rem);font-weight:300;letter-spacing:.04em}
+#preloader .pl-logo em{font-style:italic;color:var(--gold)}
+#preloader .pl-bar{width:min(320px,60vw);height:1px;background:rgba(234,230,222,.2);position:relative;overflow:hidden}
+#preloader .pl-bar span{position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left}
+#preloader .pl-pct{font-size:.8rem;letter-spacing:.3em;opacity:.6}
+
+/* ---------- cursor ---------- */
+#cursor{position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:#fff;mix-blend-mode:difference;z-index:1999;pointer-events:none;transform:translate(-50%,-50%)}
+#cursor-ring{position:fixed;top:0;left:0;width:44px;height:44px;border-radius:50%;border:1px solid #fff;mix-blend-mode:difference;z-index:1999;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;display:flex;align-items:center;justify-content:center}
+#cursor-ring .cur-label{font-size:.6rem;letter-spacing:.2em;opacity:0;transition:opacity .25s;color:#fff;font-weight:600}
+#cursor-ring.hovering{width:92px;height:92px;background:rgba(255,255,255,.95);mix-blend-mode:normal;border:none}
+#cursor-ring.hovering .cur-label{opacity:1;color:var(--ink)}
+@media(hover:none),(pointer:coarse){#cursor,#cursor-ring{display:none}body{cursor:auto}}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;mix-blend-mode:difference;color:#fff;transition:transform .4s}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:84px;max-width:1320px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3rem)}
+.logo{font-family:var(--serif);font-size:1.5rem;font-weight:400;letter-spacing:.06em}
+.logo em{font-style:italic}
+nav.main{display:flex;gap:2.4rem;font-size:.82rem;letter-spacing:.18em;font-weight:500}
+nav.main a{opacity:.75;transition:opacity .25s}
+nav.main a:hover{opacity:1}
+.hd-book{font-size:.82rem;letter-spacing:.18em;font-weight:600;border:1px solid rgba(255,255,255,.5);border-radius:99px;padding:.75rem 1.7rem;transition:background .3s,color .3s}
+.hd-book:hover{background:#fff;color:#000}
+.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:6px;padding:.5rem}
+.burger span{width:26px;height:1.5px;background:#fff;transition:.3s}
+@media(max-width:900px){nav.main,.hd-book{display:none}.burger{display:flex}}
+.mobile-menu{position:fixed;inset:0;background:var(--ink);color:var(--cream);z-index:990;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;font-family:var(--serif);font-size:2rem;clip-path:inset(0 0 100% 0);transition:clip-path .6s cubic-bezier(.7,0,.2,1)}
+.mobile-menu.open{clip-path:inset(0 0 0% 0)}
+.mobile-menu a em{font-style:italic;color:var(--gold)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,21,29,.35) 0%,rgba(20,21,29,.05) 40%,rgba(20,21,29,.72) 100%)}
+.hero-content{position:relative;z-index:2;color:#fff;padding-bottom:clamp(3rem,7vh,5.5rem);width:100%}
+.hero-eyebrow{font-size:.78rem;letter-spacing:.34em;font-weight:600;margin-bottom:1.4rem;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';width:44px;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,8.5vw,7.6rem);line-height:1.02;letter-spacing:-.01em;max-width:12ch}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{margin-top:1.6rem;font-size:1.02rem;opacity:.82;max-width:52ch;line-height:1.7}
+.hero-ctas{margin-top:2.2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:99px;padding:1rem 2.3rem;font-weight:600;font-size:.85rem;letter-spacing:.12em;cursor:pointer;border:none;font-family:var(--sans);transition:transform .3s,background .3s,color .3s}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{transform:translateY(-3px);background:#cbb07a}
+.btn-outline{border:1px solid rgba(255,255,255,.5);color:#fff;background:transparent}
+.btn-outline:hover{background:#fff;color:var(--ink)}
+.hero-scroll{position:absolute;right:clamp(1.2rem,4vw,3rem);bottom:clamp(3rem,7vh,5.5rem);z-index:2;color:#fff;font-size:.72rem;letter-spacing:.3em;writing-mode:vertical-rl;display:flex;align-items:center;gap:1rem;opacity:.7}
+.hero-scroll::after{content:'';width:1px;height:56px;background:linear-gradient(#fff,transparent);animation:drop 2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.line-mask{overflow:hidden;display:block}
+.line-inner{display:block}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--ink);color:var(--cream);overflow:hidden;padding:1.6rem 0;border-top:1px solid rgba(234,230,222,.12)}
+.mq-track{display:flex;gap:0;width:max-content;animation:mq 30s linear infinite}
+.mq-track span{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:300;font-style:italic;white-space:nowrap;padding:0 1.6rem;display:flex;align-items:center;gap:3.2rem}
+.mq-track span::after{content:'✦';font-style:normal;font-size:1rem;color:var(--gold)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:clamp(4.5rem,9vw,8rem) 0}
+.kick{font-size:.76rem;letter-spacing:.32em;font-weight:600;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:1rem}
+.kick::before{content:'';width:36px;height:1px;background:var(--gold)}
+h2.title{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,5.5vw,4.6rem);line-height:1.06;letter-spacing:-.01em;margin-bottom:1.4rem}
+h2.title em{font-style:italic;color:var(--gold)}
+.sec-lead{font-size:1.02rem;line-height:1.75;opacity:.72;max-width:56ch}
+
+/* statement */
+.statement{background:var(--cream-2)}
+.statement p.big{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,4.2vw,3.4rem);line-height:1.3;max-width:22ch}
+.statement p.big em{font-style:italic;color:var(--gold)}
+.statement .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(2.5rem,5vw,4rem);max-width:900px}
+.statement .nums div{border-top:1px solid rgba(20,21,29,.2);padding-top:1.2rem}
+.statement .nums b{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;display:block}
+.statement .nums span{font-size:.82rem;letter-spacing:.14em;opacity:.6}
+
+/* solutions */
+.sol-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding:clamp(2.5rem,5vw,4rem) 0;border-top:1px solid rgba(20,21,29,.14)}
+.sol-row:last-of-type{border-bottom:1px solid rgba(20,21,29,.14)}
+.sol-row.flip .sol-img{order:2}
+.sol-img{overflow:hidden;border-radius:20px}
+.sol-img img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.6,.2,1)}
+.sol-row:hover .sol-img img{transform:scale(1.05)}
+.sol-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--gold);margin-bottom:1rem;display:block}
+.sol-txt h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.4vw,2.8rem);margin-bottom:1rem;line-height:1.15}
+.sol-txt p{line-height:1.75;opacity:.7;margin-bottom:1.6rem;max-width:46ch}
+.sol-link{font-size:.82rem;letter-spacing:.2em;font-weight:700;border-bottom:1px solid var(--gold);padding-bottom:.4rem}
+@media(max-width:860px){.sol-row{grid-template-columns:1fr}.sol-row.flip .sol-img{order:0}}
+
+/* technology */
+.tech{background:var(--ink);color:var(--cream);border-radius:34px;margin:0 clamp(1rem,3vw,2.5rem);padding:clamp(3.5rem,7vw,6rem) clamp(1.5rem,5vw,4.5rem)}
+.tech-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,5rem);margin-top:2.5rem}
+.tech-list{display:flex;flex-direction:column}
+.tech-item{border-top:1px solid rgba(234,230,222,.16);padding:1.35rem .4rem;display:flex;align-items:baseline;gap:1.4rem;cursor:pointer;transition:padding .3s;opacity:.55}
+.tech-item:last-child{border-bottom:1px solid rgba(234,230,222,.16)}
+.tech-item .t-num{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:.95rem}
+.tech-item .t-name{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:300}
+.tech-item.active{opacity:1;padding-left:1rem}
+.tech-item:hover{opacity:.9}
+.tech-visual{position:relative;border-radius:20px;overflow:hidden;min-height:380px;background:var(--ink-2)}
+.tech-visual .tv-pane{position:absolute;inset:0;opacity:0;transition:opacity .6s;display:flex;flex-direction:column;justify-content:flex-end;padding:2.2rem;background:linear-gradient(180deg,transparent 30%,rgba(20,21,29,.85))}
+.tech-visual .tv-pane.active{opacity:1}
+.tech-visual .tv-pane h4{font-family:var(--serif);font-size:1.7rem;font-weight:400;margin-bottom:.7rem}
+.tech-visual .tv-pane h4 em{font-style:italic;color:var(--gold)}
+.tech-visual .tv-pane p{font-size:.94rem;line-height:1.65;opacity:.78;max-width:44ch}
+.tech-visual .tv-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:clamp(4rem,9vw,7rem);opacity:.1}
+@media(max-width:860px){.tech-grid{grid-template-columns:1fr}}
+
+/* team */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3rem}
+.doc{position:relative}
+.doc-img{overflow:hidden;border-radius:20px;aspect-ratio:3/3.7}
+.doc-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.6,.2,1);filter:saturate(.92)}
+.doc:hover .doc-img img{transform:scale(1.06)}
+.doc h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin:1.2rem 0 .3rem}
+.doc .role{font-size:.78rem;letter-spacing:.24em;color:var(--gold);font-weight:600;margin-bottom:.8rem}
+.doc p{font-size:.92rem;line-height:1.65;opacity:.68}
+@media(max-width:860px){.team-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}}
+
+/* testimonials */
+.testi{background:var(--cream-2);overflow:hidden}
+.testi-shell{position:relative;max-width:900px;margin:3rem auto 0}
+.testi-track{display:flex;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.testi-slide{flex:0 0 100%;padding:0 1rem;text-align:center}
+.testi-slide blockquote{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.45;margin-bottom:1.6rem}
+.testi-slide .who{font-size:.82rem;letter-spacing:.22em;font-weight:600;color:var(--gold)}
+.testi-nav{display:flex;justify-content:center;align-items:center;gap:1.4rem;margin-top:2.4rem}
+.testi-btn{width:52px;height:52px;border-radius:50%;border:1px solid rgba(20,21,29,.25);background:none;cursor:pointer;font-size:1.1rem;color:var(--ink);transition:.3s;font-family:var(--sans)}
+.testi-btn:hover{background:var(--ink);color:var(--cream)}
+.testi-count{font-family:var(--serif);font-style:italic;font-size:1rem;opacity:.6}
+
+/* booking */
+.booking{background:var(--ink);color:var(--cream);border-radius:34px;margin:0 clamp(1rem,3vw,2.5rem);padding:clamp(3.5rem,7vw,6rem) clamp(1.5rem,5vw,4.5rem);position:relative;overflow:hidden}
+.booking::before{content:'A';position:absolute;right:-2rem;bottom:-6rem;font-family:var(--serif);font-style:italic;font-size:22rem;opacity:.05;line-height:1}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);position:relative;z-index:1}
+.book-form{display:flex;flex-direction:column;gap:1rem}
+.field label{display:block;font-size:.74rem;letter-spacing:.22em;font-weight:600;opacity:.65;margin-bottom:.55rem}
+.field input,.field select{background:transparent;border:1px solid rgba(234,230,222,.25);border-radius:12px;color:var(--cream);padding:1rem 1.2rem;font-family:var(--sans);font-size:.95rem;width:100%;outline:none;transition:border .3s}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.field select option{color:var(--ink)}
+.book-side .row{display:flex;gap:1rem;margin-bottom:1.6rem;align-items:flex-start}
+.book-side .row .ic{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(234,230,222,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem}
+.book-side b{display:block;margin-bottom:.3rem;font-size:1rem}
+.book-side span{opacity:.65;font-size:.92rem;line-height:1.55}
+.form-ok{display:none;text-align:center;padding:3rem 1rem;font-family:var(--serif);font-size:1.6rem;font-style:italic}
+.form-ok.show{display:block;animation:fadeUp .6s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media(max-width:860px){.book-grid{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:var(--cream);padding:4rem 0 1.8rem;border-top:1px solid rgba(234,230,222,.12)}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
+.ft-top .logo{font-size:2rem}
+.ft-links{display:flex;gap:2rem;font-size:.82rem;letter-spacing:.16em;opacity:.7}
+.ft-bottom{border-top:1px solid rgba(234,230,222,.12);padding-top:1.5rem;display:flex;justify-content:space-between;font-size:.78rem;opacity:.55;flex-wrap:wrap;gap:.6rem}
+
+[data-reveal]{opacity:0;transform:translateY(40px)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  [data-reveal]{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pl-logo">Aura <em>Studio</em></div>
+  <div class="pl-bar"><span id="plFill"></span></div>
+  <div class="pl-pct" id="plPct">00</div>
+</div>
+<div id="cursor"></div>
+<div id="cursor-ring"><span class="cur-label">VIEW</span></div>
+
+<header id="header">
+  <div class="hd-in">
+    <a href="#" class="logo">Aura <em>Studio</em></a>
+    <nav class="main">
+      <a href="#solutions">Solutions</a>
+      <a href="#technology">Technology</a>
+      <a href="#team">Team</a>
+      <a href="#stories">Stories</a>
+    </nav>
+    <a class="hd-book" href="#booking">BOOK A VISIT</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#solutions">Solu<em>tions</em></a><a href="#technology">Techno<em>logy</em></a><a href="#team">Te<em>am</em></a><a href="#booking">Book a <em>visit</em></a>
+</div>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <video autoplay muted loop playsinline poster="assets/img/a-interior.jpg">
+      <source src="assets/img/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-shade"></div>
+    <div class="hero-content wrap">
+      <div class="hero-eyebrow">PREMIUM ESTHETIC DENTISTRY</div>
+      <h1><span class="line-mask"><span class="line-inner">Your smile,</span></span><span class="line-mask"><span class="line-inner"><em>effortlessly</em> enhanced.</span></span></h1>
+      <p class="hero-sub">We combine advanced science with an artist's touch — designing smiles that are as healthy as they are beautiful.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#booking">BOOK A CONSULTATION</a>
+        <a class="btn btn-outline" href="#solutions">OUR SOLUTIONS</a>
+      </div>
+    </div>
+    <div class="hero-scroll">SCROLL</div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee"><div class="mq-track" id="mqTrack">
+    <span>Esthetic Dentistry</span><span>Restorative Dentistry</span><span>Preventive Care</span><span>Beyond the Smile</span>
+    <span>Esthetic Dentistry</span><span>Restorative Dentistry</span><span>Preventive Care</span><span>Beyond the Smile</span>
+  </div></div>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <div class="wrap">
+      <div class="kick" data-reveal>OUR PHILOSOPHY</div>
+      <p class="big" data-reveal>A smile is never just teeth. It is confidence, warmth, presence — <em>we craft all three.</em></p>
+      <div class="nums">
+        <div data-reveal><b><span data-count="20">0</span>+</b><span>YEARS OF COMBINED MASTERY</span></div>
+        <div data-reveal><b><span data-count="4800">0</span>+</b><span>SMILES DESIGNED</span></div>
+        <div data-reveal><b><span data-count="99">0</span>%</b><span>PATIENT SATISFACTION</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section id="solutions">
+    <div class="wrap">
+      <div class="kick" data-reveal>OUR SOLUTIONS</div>
+      <h2 class="title" data-reveal>Designed around <em>your</em> smile</h2>
+      <p class="sec-lead" data-reveal>From subtle refinements to complete transformations — every treatment plan is drawn around your face, your bite, your life.</p>
+      <div style="margin-top:2rem">
+        <div class="sol-row" data-reveal>
+          <div class="sol-img"><img src="assets/img/a-smile.jpg" alt="Smile makeover"></div>
+          <div class="sol-txt"><span class="sol-num">— 01</span><h3>Smile Makeovers</h3><p>Veneers, contouring and whitening composed as one work of art. Natural, camera-ready results that still look like you — only luminous.</p><a class="sol-link" href="#booking">BOOK THIS TREATMENT</a></div>
+        </div>
+        <div class="sol-row flip" data-reveal>
+          <div class="sol-img"><img src="assets/img/a-implant.jpg" alt="Implant restoration"></div>
+          <div class="sol-txt"><span class="sol-num">— 02</span><h3>Implant Restoration</h3><p>Rebuild your smile with lifelike implants that look, feel and function just like natural teeth — planned digitally, placed precisely.</p><a class="sol-link" href="#booking">BOOK THIS TREATMENT</a></div>
+        </div>
+        <div class="sol-row" data-reveal>
+          <div class="sol-img"><img src="assets/img/a-whitening.jpg" alt="Whitening and polish"></div>
+          <div class="sol-txt"><span class="sol-num">— 03</span><h3>Whitening & Polish</h3><p>A signature brightening ritual in a single visit — gentle on enamel, dramatic in the mirror. The fastest way to a new smile.</p><a class="sol-link" href="#booking">BOOK THIS TREATMENT</a></div>
+        </div>
+        <div class="sol-row flip" data-reveal>
+          <div class="sol-img"><img src="assets/img/a-aesthetics.jpg" alt="Facial aesthetics"></div>
+          <div class="sol-txt"><span class="sol-num">— 04</span><h3>Facial Aesthetics</h3><p>Targeted, artful treatments that soften lines and restore harmony — because a smile lives in a face, not in isolation.</p><a class="sol-link" href="#booking">BOOK THIS TREATMENT</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section id="technology" style="padding-top:0">
+    <div class="tech" data-reveal>
+      <div class="kick">TECHNOLOGY-DRIVEN</div>
+      <h2 class="title" style="color:var(--cream)">Dentistry for <em>exceptional</em> results</h2>
+      <div class="tech-grid">
+        <div class="tech-list" id="techList">
+          <div class="tech-item active" data-i="0"><span class="t-num">01</span><span class="t-name">3D Smile Design</span></div>
+          <div class="tech-item" data-i="1"><span class="t-num">02</span><span class="t-name">Laser Dentistry</span></div>
+          <div class="tech-item" data-i="2"><span class="t-num">03</span><span class="t-name">Digital Impressions</span></div>
+          <div class="tech-item" data-i="3"><span class="t-num">04</span><span class="t-name">3D CBCT Imaging</span></div>
+          <div class="tech-item" data-i="4"><span class="t-num">05</span><span class="t-name">CAD/CAM Crafting</span></div>
+          <div class="tech-item" data-i="5"><span class="t-num">06</span><span class="t-name">Intraoral Camera</span></div>
+        </div>
+        <div class="tech-visual" id="techVisual">
+          <div class="tv-bg">Aura</div>
+          <div class="tv-pane active"><h4>3D <em>Smile Design</em></h4><p>Preview your future smile before we touch a single tooth — designed digitally, approved by you.</p></div>
+          <div class="tv-pane"><h4><em>Laser</em> Dentistry</h4><p>Precise, comfortable treatments with minimal anesthesia and faster healing.</p></div>
+          <div class="tv-pane"><h4><em>Digital</em> Impressions</h4><p>No more messy molds — a quick, comfortable scan maps your bite in minutes.</p></div>
+          <div class="tv-pane"><h4>3D <em>CBCT</em> Imaging</h4><p>A complete view of teeth, jaw and bone — planning with total precision and safety.</p></div>
+          <div class="tv-pane"><h4><em>CAD/CAM</em> Crafting</h4><p>Restorations milled in-studio for a perfect fit, natural beauty and lasting strength.</p></div>
+          <div class="tv-pane"><h4><em>Intraoral</em> Camera</h4><p>See what we see — crystal-clear views that make every decision obvious.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" style="padding-top:clamp(2rem,5vw,4rem)">
+    <div class="wrap">
+      <div class="kick" data-reveal>TEAM OF EXPERTS</div>
+      <h2 class="title" data-reveal>Hands you can <em>trust</em></h2>
+      <p class="sec-lead" data-reveal>Decades of combined experience, ongoing advanced education, and one shared obsession: the perfect natural smile.</p>
+      <div class="team-grid">
+        <article class="doc" data-reveal>
+          <div class="doc-img"><img src="assets/img/a-doctor1.jpg" alt="Dr. Elena Marsh"></div>
+          <h3>Dr. Elena Marsh</h3><div class="role">FOUNDER · ESTHETIC DENTISTRY</div>
+          <p>Known for precision, empathy and artistry — she creates natural, camera-ready smiles through advanced veneers and full rehabilitations.</p>
+        </article>
+        <article class="doc" data-reveal>
+          <div class="doc-img"><img src="assets/img/a-doctor2.jpg" alt="Dr. Karim Haddad"></div>
+          <h3>Dr. Karim Haddad</h3><div class="role">PARTNER · IMPLANTOLOGY</div>
+          <p>A renowned expert in implant and restorative dentistry, merging innovation with artistry for results that last decades.</p>
+        </article>
+        <article class="doc" data-reveal>
+          <div class="doc-img"><img src="assets/img/a-doctor3.jpg" alt="Dr. Sofia Lindqvist"></div>
+          <h3>Dr. Sofia Lindqvist</h3><div class="role">ORTHODONTICS · ALIGNERS</div>
+          <p>Specialist in discreet alignment — she straightens smiles invisibly, with comfort and speed her patients love.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi" id="stories">
+    <div class="wrap">
+      <div class="kick" data-reveal style="justify-content:center">PATIENT STORIES</div>
+      <h2 class="title center" data-reveal style="text-align:center">Smiles that <em>speak</em></h2>
+      <div class="testi-shell" data-reveal>
+        <div class="testi-track" id="testiTrack">
+          <div class="testi-slide"><blockquote>"The fear I had of dentists my whole life disappeared on the first visit. This isn't a clinic — it's an atelier for smiles."</blockquote><div class="who">YASMINE R. — SMILE MAKEOVER</div></div>
+          <div class="testi-slide"><blockquote>"Dr. Marsh explained everything, checked on me after, and the result is so natural people think I was born with it."</blockquote><div class="who">OMAR B. — VENEERS</div></div>
+          <div class="testi-slide"><blockquote>"Painless, precise, and honestly luxurious. I've never experienced dentistry like this anywhere."</blockquote><div class="who">CLAIRE D. — IMPLANTS</div></div>
+          <div class="testi-slide"><blockquote>"One whitening session and I can't stop smiling in photos. The whole experience felt like a spa day."</blockquote><div class="who">MEHDI K. — WHITENING</div></div>
+        </div>
+        <div class="testi-nav">
+          <button class="testi-btn" id="tPrev" aria-label="Previous">←</button>
+          <span class="testi-count"><span id="tCur">01</span> / 04</span>
+          <button class="testi-btn" id="tNext" aria-label="Next">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking" style="padding-bottom:clamp(4.5rem,9vw,8rem)">
+    <div class="booking" data-reveal>
+      <div class="book-grid">
+        <div class="book-side">
+          <div class="kick">BEGIN YOUR TRANSFORMATION</div>
+          <h2 class="title" style="color:var(--cream)">Book your <em>consultation</em></h2>
+          <p class="sec-lead" style="margin-bottom:2.4rem">Tell us what bothers you about your smile. We'll design the rest — together.</p>
+          <div class="row"><span class="ic">◈</span><div><b>Visit the studio</b><span>24 Boulevard d'Anfa, Casablanca</span></div></div>
+          <div class="row"><span class="ic">✆</span><div><b>Call us</b><span>+212 522 000 000</span></div></div>
+          <div class="row"><span class="ic">◷</span><div><b>Hours</b><span>Mon – Sat · 9:00 – 19:00</span></div></div>
+        </div>
+        <form class="book-form" id="bookForm">
+          <div class="field"><label>YOUR NAME</label><input type="text" required placeholder="Jane Doe"></div>
+          <div class="field"><label>PHONE</label><input type="tel" required placeholder="+212 6 00 00 00 00"></div>
+          <div class="field"><label>TREATMENT</label><select><option>Smile Makeover</option><option>Veneers</option><option>Implants</option><option>Whitening</option><option>Facial Aesthetics</option><option>Not sure — advise me</option></select></div>
+          <div class="field"><label>PREFERRED DATE</label><input type="date" required></div>
+          <button type="submit" class="btn btn-gold" style="margin-top:.6rem">REQUEST MY CONSULTATION</button>
+          <p style="font-size:.78rem;opacity:.55;text-align:center">No commitment — we confirm every request by phone.</p>
+        </form>
+        <div class="form-ok" id="formOk">Thank you — we'll call you shortly<br>to confirm your visit. ✦</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <a href="#" class="logo">Aura <em>Studio</em></a>
+      <div class="ft-links"><a href="#solutions">Solutions</a><a href="#team">Team</a><a href="#booking">Booking</a></div>
+    </div>
+    <div class="ft-bottom"><span>© 2026 Aura Dental Studio — Template demo, all content fictional</span><span>Premium Esthetic Dentistry</span></div>
+  </div>
+</footer>
+
+<noscript><style>[data-reveal]{opacity:1;transform:none}#preloader{display:none}.line-inner{transform:none!important}</style></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var preloader = document.getElementById('preloader'),
+      plFill = document.getElementById('plFill'),
+      plPct = document.getElementById('plPct'),
+      heroInners = document.querySelectorAll('.hero .line-inner');
+
+  function killPreloader(){
+    if(preloader) preloader.style.display = 'none';
+  }
+
+  /* set initial hero state immediately (no CSS transform to avoid stacking) */
+  if(window.gsap) gsap.set(heroInners, { yPercent: 112 });
+
+  /* reveals helper */
+  function initMotion(){
+    if(!window.gsap || !window.Lenis){
+      document.querySelectorAll('[data-reveal]').forEach(function(e){e.style.opacity=1;e.style.transform='none';});
+      gsap && gsap.set(heroInners, { yPercent: 0 });
+      return null;
+    }
+    gsap.registerPlugin(ScrollTrigger);
+    var lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var id = a.getAttribute('href');
+        if(id.length > 1){
+          var t = document.querySelector(id);
+          if(t){ e.preventDefault(); lenis.scrollTo(t, { offset: -60, duration: 1.5 }); }
+        }
+      });
+    });
+
+    gsap.utils.toArray('[data-reveal]').forEach(function(el){
+      gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+    });
+
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var end = parseInt(el.getAttribute('data-count'), 10);
+      ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true,
+        onEnter: function(){
+          var o = { v: 0 };
+          gsap.to(o, { v: end, duration: 1.6, ease: 'power2.out',
+            onUpdate: function(){ el.textContent = Math.round(o.v).toLocaleString('en-US'); } });
+        } });
+    });
+
+    /* hero parallax on scroll */
+    gsap.to('.hero-content', { yPercent: 18, opacity: .25, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero video', { yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+    return lenis;
+  }
+
+  /* hero intro timeline */
+  function heroIntro(){
+    if(!window.gsap){ heroInners.forEach(function(e){e.style.transform='none';}); return; }
+    var tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    tl.to(heroInners, { yPercent: 0, duration: 1.3, stagger: 0.12 })
+      .from('.hero-eyebrow', { opacity: 0, x: -30, duration: .9 }, '-=0.9')
+      .from('.hero-sub', { opacity: 0, y: 24, duration: .9 }, '-=0.8')
+      .from('.hero-ctas .btn', { opacity: 0, y: 24, duration: .8, stagger: .1 }, '-=0.7')
+      .from('.hero-scroll', { opacity: 0, duration: .8 }, '-=0.5');
+  }
+
+  /* preloader progress (asset-aware, time-boxed) */
+  var progress = 0, done = false, lenisRef = null;
+  function finish(){
+    if(done) return; done = true;
+    plFill.style.transform = 'scaleX(1)'; plPct.textContent = '100';
+    setTimeout(function(){
+      if(window.gsap){
+        gsap.to(preloader, { yPercent: -100, duration: 1, ease: 'power4.inOut',
+          onComplete: function(){ killPreloader(); } });
+      } else { killPreloader(); }
+      lenisRef = initMotion();
+      heroIntro();
+    }, 350);
+  }
+  var tick = setInterval(function(){
+    progress = Math.min(progress + Math.random()*16, 92);
+    plFill.style.transform = 'scaleX(' + progress/100 + ')';
+    plPct.textContent = String(Math.round(progress)).padStart(2,'0');
+    if(progress >= 92){ clearInterval(tick); setTimeout(finish, 500); }
+  }, 160);
+  setTimeout(finish, 4500); /* hard cap */
+
+  /* custom cursor */
+  var cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+  var mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+  window.addEventListener('mousemove', function(e){
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+  });
+  (function loop(){
+    rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .tech-item, input, select').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ ring.classList.add('hovering'); });
+    el.addEventListener('mouseleave', function(){ ring.classList.remove('hovering'); });
+  });
+
+  /* header hide on scroll down */
+  var header = document.getElementById('header'), lastY = 0;
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    header.style.transform = (y > 400 && y > lastY) ? 'translateY(-100%)' : 'translateY(0)';
+    lastY = y;
+  }, { passive: true });
+
+  /* mobile menu */
+  var burger = document.getElementById('burger'), mm = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){ mm.classList.toggle('open'); });
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mm.classList.remove('open'); }); });
+
+  /* technology tabs */
+  var items = document.querySelectorAll('.tech-item'),
+      panes = document.querySelectorAll('.tv-pane'), ti = 0, timer = null;
+  function showTech(n){
+    ti = (n + items.length) % items.length;
+    items.forEach(function(it, k){ it.classList.toggle('active', k === ti); });
+    panes.forEach(function(p, k){ p.classList.toggle('active', k === ti); });
+  }
+  function autoTech(){ timer = setInterval(function(){ showTech(ti + 1); }, 4500); }
+  items.forEach(function(it){
+    it.addEventListener('click', function(){
+      clearInterval(timer); showTech(parseInt(it.getAttribute('data-i'), 10)); autoTech();
+    });
+  });
+  autoTech();
+
+  /* testimonials */
+  var track = document.getElementById('testiTrack'),
+      slides = track.children.length, cur2 = 0,
+      tCur = document.getElementById('tCur');
+  function goT(n){
+    cur2 = (n + slides) % slides;
+    track.style.transform = 'translateX(-' + (cur2 * 100) + '%)';
+    tCur.textContent = String(cur2 + 1).padStart(2, '0');
+  }
+  document.getElementById('tPrev').addEventListener('click', function(){ goT(cur2 - 1); });
+  document.getElementById('tNext').addEventListener('click', function(){ goT(cur2 + 1); });
+  setInterval(function(){ goT(cur2 + 1); }, 7000);
+
+  /* booking form */
+  var form = document.getElementById('bookForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    form.style.display = 'none';
+    document.getElementById('formOk').classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>

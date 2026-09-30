@@ -84,10 +84,11 @@ nav.main a:hover{opacity:1}
 
 /* ---------- marquee ---------- */
 .marquee{background:var(--ink);color:var(--cream);overflow:hidden;padding:1.6rem 0;border-top:1px solid rgba(234,230,222,.12)}
-.mq-track{display:flex;gap:0;width:max-content;animation:mq 30s linear infinite}
+.mq-track{display:flex;gap:0;width:max-content;animation:mq 60s linear infinite}
 .mq-track span{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:300;font-style:italic;white-space:nowrap;padding:0 1.6rem;display:flex;align-items:center;gap:3.2rem}
 .mq-track span::after{content:'✦';font-style:normal;font-size:1rem;color:var(--gold)}
 @keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
 
 /* ---------- sections ---------- */
 section{padding:clamp(4.5rem,9vw,8rem) 0}
